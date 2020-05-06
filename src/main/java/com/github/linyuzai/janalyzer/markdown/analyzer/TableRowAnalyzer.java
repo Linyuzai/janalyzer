@@ -31,6 +31,7 @@ public class TableRowAnalyzer extends MarkdownAnalyzer {
         tableRowElement.setContent(content);
         tableRowElement.setBeginIndex(beginIndex);
         tableRowElement.setEndIndex(endIndex);
+        tableRowElement.setFormat(trimBoth(content, '|', '-', ':', '\n').isEmpty());
         return tableRowElement;
     }
 
