@@ -14,12 +14,19 @@ public class HtmlRenderer {
 
     private String content;
 
+    private String style = "";
+
     private String charset = "utf-8";
 
     private String title = "";
 
     public HtmlRenderer(MarkdownElement markdownElement) {
         this.markdownElement = markdownElement;
+    }
+
+    public HtmlRenderer style(String style) {
+        this.style = style;
+        return this;
     }
 
     public HtmlRenderer charset(String charset) {
@@ -63,7 +70,7 @@ public class HtmlRenderer {
 
     private String _style() {
         return "<style type=\"text/css\">"
-                + "code { padding : 2px 4px;\ncolor : #c0341d;\nbackground-color : #fbe5e1;\nborder-radius : 4px}"
+                + style
                 + "</style>";
     }
 
