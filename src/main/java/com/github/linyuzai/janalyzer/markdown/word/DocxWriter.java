@@ -47,8 +47,8 @@ public class DocxWriter {
     }
 
     private void writeHtml(OutputStream os) throws IOException {
-        byte b[] = html.getBytes(charset);  //这里是必须要设置编码的，不然导出中文就会乱码。
-        ByteArrayInputStream bis = new ByteArrayInputStream(b);//将字节数组包装到流中
+        byte[] bytes = html.getBytes(charset);
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         POIFSFileSystem pfs = new POIFSFileSystem();
         DirectoryEntry directory = pfs.getRoot();
         directory.createDocument("docx", bis);

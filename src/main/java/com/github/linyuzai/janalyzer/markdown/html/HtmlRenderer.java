@@ -141,6 +141,9 @@ public class HtmlRenderer {
                 builder.append(render0(e, deep));
                 builder.append("</td>");
             } else if (e instanceof TableRowElement) {
+                if (((TableRowElement) e).isFormat()) {
+                    return "";
+                }
                 builder.append("<tr>");
                 builder.append(render0(e, deep));
                 builder.append("</tr>");
