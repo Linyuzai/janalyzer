@@ -17,7 +17,7 @@ public class BlockCodeAnalyzer extends MarkdownAnalyzer {
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(TextAnalyzer.getInstance());
+        registerAnalyzer(TextareaAnalyzer.getInstance());
     }
 
     @Override

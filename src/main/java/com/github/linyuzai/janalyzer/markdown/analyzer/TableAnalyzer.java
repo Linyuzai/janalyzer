@@ -64,7 +64,7 @@ public class TableAnalyzer extends MarkdownAnalyzer {
                     content = content.substring(1, content.length() - 1);
                     String[] arr = content.split("\\|", -1);
                     for (String str : arr) {
-                        if (!trimBoth(str, ':', '-').isEmpty()) {
+                        if (!trimBoth(str, ':', '-', ' ').isEmpty()) {
                             return -1;
                         }
                     }

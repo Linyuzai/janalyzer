@@ -20,6 +20,10 @@ public class HtmlRenderer {
 
     private String title = "";
 
+    public HtmlRenderer() {
+
+    }
+
     public HtmlRenderer(MarkdownElement markdownElement) {
         this.markdownElement = markdownElement;
     }
@@ -110,7 +114,7 @@ public class HtmlRenderer {
         StringBuilder builder = new StringBuilder();
         for (MarkdownElement e : elements) {
             if (deep == 1) {
-                builder.append("<p>");
+                //builder.append("<p>");
             }
             if (e instanceof BlankLineElement) {
                 //builder.append("\n");
@@ -136,9 +140,14 @@ public class HtmlRenderer {
                 builder.append(render0(e, deep));
                 builder.append("</ol>");
             } else if (e instanceof ReferenceElement) {
-                builder.append("<blockquote>");
-                builder.append(render0(e, deep));
-                builder.append("</blockquote>");
+                int referenceLevel = ((ReferenceElement) e).getReferenceLevel();
+                for (int i = 0; i < referenceLevel; i++) {
+                    builder.append("<blockquote>");
+                }
+                builder.append("<p>").append(render0(e, deep)).append("</p>");
+                for (int i = 0; i < referenceLevel; i++) {
+                    builder.append("</blockquote>");
+                }
             } else if (e instanceof TableElement) {
                 builder.append("<table>");
                 builder.append(render0(e, deep));
@@ -149,13 +158,15 @@ public class HtmlRenderer {
                 builder.append("</td>");
             } else if (e instanceof TableRowElement) {
                 if (((TableRowElement) e).isFormat()) {
-                    return "";
+                    continue;
                 }
                 builder.append("<tr>");
                 builder.append(render0(e, deep));
                 builder.append("</tr>");
             } else if (e instanceof TextElement) {
                 builder.append(((TextElement) e).getText());
+            } else if (e instanceof TextareaElement) {
+                builder.append(((TextareaElement) e).getText());
             } else if (e instanceof UnorderedItemElement) {
                 builder.append("<li>");
                 builder.append(render0(e, deep));
@@ -194,7 +205,7 @@ public class HtmlRenderer {
                 builder.append("</img>");
             }
             if (deep == 1) {
-                builder.append("</p>\n");
+                //builder.append("</p>\n");
             }
         }
         return builder.toString();
@@ -202,5 +213,9 @@ public class HtmlRenderer {
 
     public String getContent() {
         return content;
+    }
+
+    public void setMarkdownElement(MarkdownElement markdownElement) {
+        this.markdownElement = markdownElement;
     }
 }

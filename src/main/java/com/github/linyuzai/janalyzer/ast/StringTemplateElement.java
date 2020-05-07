@@ -7,10 +7,9 @@ public class StringTemplateElement<E extends StringTemplateElement> implements T
 
     private int beginIndex;
     private int endIndex;
-
     private String content;
-
     private Collection<E> children;
+    private Object extra;
 
     public int getBeginIndex() {
         return beginIndex;
@@ -49,5 +48,13 @@ public class StringTemplateElement<E extends StringTemplateElement> implements T
             this.children = new ArrayList<>();
         }
         this.children.add(child);
+    }
+
+    public Object getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Object extra) {
+        this.extra = extra;
     }
 }

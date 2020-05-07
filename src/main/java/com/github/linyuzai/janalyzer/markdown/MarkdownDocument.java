@@ -22,9 +22,12 @@ public class MarkdownDocument {
         return new HtmlRenderer(markdownElement);
     }
 
+    public HtmlRenderer html(HtmlRenderer renderer) {
+        renderer.setMarkdownElement(markdownElement);
+        return renderer;
+    }
+
     public DocxWriter docx() throws IOException {
         return new DocxWriter(markdownElement);
     }
-
-
 }
