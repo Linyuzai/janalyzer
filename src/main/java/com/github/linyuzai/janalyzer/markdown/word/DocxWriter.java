@@ -10,6 +10,7 @@ public class DocxWriter {
 
     private MarkdownElement markdownElement;
     private String html;
+    private String name = "word";
 
     private boolean isHtml;
 
@@ -22,6 +23,11 @@ public class DocxWriter {
     public DocxWriter(String html) {
         this.html = html;
         isHtml = true;
+    }
+
+    public DocxWriter name(String name) {
+        this.name = name;
+        return this;
     }
 
     public DocxWriter charset(String charset) {
@@ -51,7 +57,7 @@ public class DocxWriter {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         POIFSFileSystem pfs = new POIFSFileSystem();
         DirectoryEntry directory = pfs.getRoot();
-        directory.createDocument("docx", bis);
+        directory.createDocument(name, bis);
         pfs.writeFilesystem(os);
         bis.close();
     }
