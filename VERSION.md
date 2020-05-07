@@ -5,8 +5,6 @@
 - table识别的bug（空格）
 - style bug
 - 自定义renderer
+- 连续引用
 
->>>>akf
->>>asbk
-akjsdfb
 

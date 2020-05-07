@@ -49,6 +49,9 @@ public class HtmlRenderer {
 
     public HtmlRenderer render() {
         content = _doctype(_html(_head(_body(render0(markdownElement, 0)))));
+        while (content.contains("</blockquote><blockquote>")) {
+            content = content.replace("</blockquote><blockquote>", "");
+        }
         return this;
     }
 
