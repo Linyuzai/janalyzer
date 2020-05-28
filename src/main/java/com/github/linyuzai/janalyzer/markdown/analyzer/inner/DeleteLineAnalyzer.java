@@ -43,9 +43,7 @@ public class DeleteLineAnalyzer extends InnerPartAnalyzer {
                 String content = source.substring(beginIndex, endIndex);
                 String inner = content.substring(mask.length(), content.length() - mask.length());
                 DeleteLineElement deleteLineElement = (DeleteLineElement) super.analyze(newContext(inner, loop));
-                deleteLineElement.setContent(content);
-                deleteLineElement.setBeginIndex(beginIndex);
-                deleteLineElement.setEndIndex(endIndex);
+                baseElement(deleteLineElement, beginIndex, endIndex, content);
                 return deleteLineElement;
             }
         }

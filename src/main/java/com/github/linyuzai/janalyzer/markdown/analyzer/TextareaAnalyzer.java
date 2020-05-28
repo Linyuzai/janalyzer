@@ -31,9 +31,7 @@ public class TextareaAnalyzer extends MarkdownAnalyzer {
         int beginIndex = 0;
         int endIndex = source.length();
         TextareaElement textareaElement = (TextareaElement) super.analyze(newContext(source, loop));
-        textareaElement.setContent(source);
-        textareaElement.setBeginIndex(beginIndex);
-        textareaElement.setEndIndex(endIndex);
+        baseElement(textareaElement, beginIndex, endIndex, source);
         textareaElement.setText(source);
         return textareaElement;
     }

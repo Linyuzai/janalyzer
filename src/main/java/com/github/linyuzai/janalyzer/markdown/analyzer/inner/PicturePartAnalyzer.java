@@ -59,9 +59,7 @@ public class PicturePartAnalyzer extends InnerPartAnalyzer {
                     String urlAndTitle = source.substring(picSecondIndex + picSecond.length(), picThirdIndex);
                     PictureElement pictureElement = analyseName ?
                             (PictureElement) super.analyze(newContext(inner, loop)) : newElement();
-                    pictureElement.setContent(content);
-                    pictureElement.setBeginIndex(beginIndex);
-                    pictureElement.setEndIndex(endIndex);
+                    baseElement(pictureElement, beginIndex, endIndex, content);
                     int titleIndex = urlAndTitle.indexOf(" ");
                     if (titleIndex == -1) {
                         pictureElement.setUrl(urlAndTitle);

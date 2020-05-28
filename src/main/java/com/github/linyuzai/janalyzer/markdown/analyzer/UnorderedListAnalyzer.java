@@ -29,11 +29,11 @@ public class UnorderedListAnalyzer extends MarkdownAnalyzer {
         String source = context.getSource();
         boolean loop = context.isLoop();
         String s = source;
-        int nextEndIndex = getNextItemEndIndex(s);
+        int nextEndIndex = getNextUnorderedItemEndIndex(s);
         int endIndex = nextEndIndex;
         while (nextEndIndex != -1) {
             s = s.substring(nextEndIndex);
-            nextEndIndex = getNextItemEndIndex(s);
+            nextEndIndex = getNextUnorderedItemEndIndex(s);
             if (nextEndIndex != -1) {
                 endIndex += nextEndIndex;
             }
@@ -44,13 +44,11 @@ public class UnorderedListAnalyzer extends MarkdownAnalyzer {
         int beginIndex = 0;
         String content = source.substring(beginIndex, endIndex);
         UnorderedListElement unorderedListElement = (UnorderedListElement) super.analyze(newContext(content, loop));
-        unorderedListElement.setContent(content);
-        unorderedListElement.setBeginIndex(beginIndex);
-        unorderedListElement.setEndIndex(endIndex);
+        baseElement(unorderedListElement, beginIndex, endIndex, content);
         return unorderedListElement;
     }
 
-    private int getNextItemEndIndex(String source) {
+    private int getNextUnorderedItemEndIndex(String source) {
         String s = trimStart(source, ' ');
         int blankLength = source.length() - s.length();
         if (s.startsWith("- ") || s.startsWith("+ ") || s.startsWith("* ")) {

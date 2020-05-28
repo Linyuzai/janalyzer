@@ -37,9 +37,7 @@ public class DividerAnalyzer extends MarkdownAnalyzer {
                 String inner = trimStart(content, '-', '*', '\n');
                 if (inner.isEmpty()) {
                     DividerElement dividerElement = (DividerElement) super.analyze(newContext(content, loop));
-                    dividerElement.setContent(content);
-                    dividerElement.setBeginIndex(beginIndex);
-                    dividerElement.setEndIndex(endIndex + blankLength);
+                    baseElement(dividerElement, beginIndex, endIndex + blankLength, content);
                     return dividerElement;
                 }
             }

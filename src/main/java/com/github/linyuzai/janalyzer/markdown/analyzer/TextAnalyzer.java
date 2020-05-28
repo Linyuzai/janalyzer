@@ -32,9 +32,7 @@ public class TextAnalyzer extends MarkdownAnalyzer {
         int endIndex = getEndIndex(source, "\n");
         String content = source.substring(beginIndex, endIndex);
         TextElement textElement = (TextElement) super.analyze(newContext(content, loop));
-        textElement.setContent(content);
-        textElement.setBeginIndex(beginIndex);
-        textElement.setEndIndex(endIndex);
+        baseElement(textElement, beginIndex, endIndex, content);
         textElement.setText(trimBoth(content, '\n', ' '));
         return textElement;
     }

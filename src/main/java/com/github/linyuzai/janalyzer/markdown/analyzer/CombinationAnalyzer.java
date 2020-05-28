@@ -40,9 +40,7 @@ public class CombinationAnalyzer extends MarkdownAnalyzer {
         int endIndex = getEndIndex(source, "\n");
         String content = source.substring(beginIndex, endIndex);
         CombinationElement combinationElement = (CombinationElement) super.analyze(newContext(content, loop));
-        combinationElement.setContent(content);
-        combinationElement.setBeginIndex(beginIndex);
-        combinationElement.setEndIndex(endIndex);
+        baseElement(combinationElement, beginIndex, endIndex, content);
         return combinationElement;
     }
 

@@ -49,9 +49,7 @@ public class TableAnalyzer extends MarkdownAnalyzer {
         int beginIndex = 0;
         String content = source.substring(beginIndex, endIndex);
         TableElement tableElement = (TableElement) super.analyze(newContext(content, loop));
-        tableElement.setContent(content);
-        tableElement.setBeginIndex(beginIndex);
-        tableElement.setEndIndex(endIndex);
+        baseElement(tableElement, beginIndex, endIndex, content);
         return tableElement;
     }
 

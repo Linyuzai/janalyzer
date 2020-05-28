@@ -34,9 +34,7 @@ public class BlankLineAnalyzer extends MarkdownAnalyzer {
         String s = content.trim();
         if (s.isEmpty()) {
             BlankLineElement blankLineElement = (BlankLineElement) super.analyze(newContext(content, loop));
-            blankLineElement.setContent(content);
-            blankLineElement.setBeginIndex(beginIndex);
-            blankLineElement.setEndIndex(endIndex);
+            baseElement(blankLineElement, beginIndex, endIndex, content);
             return blankLineElement;
         }
         return null;

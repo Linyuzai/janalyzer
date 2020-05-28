@@ -1,11 +1,17 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.MarkdownAnalyzer;
+import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 
 import java.util.Collection;
 
 public abstract class InnerPartAnalyzer extends MarkdownAnalyzer {
+
+    public boolean notMatch(MarkdownContext context, String source, int index) {
+        int firstBeginIndex = getFirstBeginIndex(context.getParent(), source);
+        return firstBeginIndex != -1 && firstBeginIndex < index;
+    }
 
     public int getFirstBeginIndex(MarkdownAnalyzer parent, String source) {
         int beginIndex = -1;

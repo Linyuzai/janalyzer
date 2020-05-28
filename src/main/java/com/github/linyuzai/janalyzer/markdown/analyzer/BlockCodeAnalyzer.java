@@ -50,9 +50,7 @@ public class BlockCodeAnalyzer extends MarkdownAnalyzer {
             String language = content.substring(mask.length(), nFirstIndex);
             String inner = content.substring(nFirstIndex + 1, content.length() - endLength);
             BlockCodeElement blockCodeElement = (BlockCodeElement) super.analyze(newContext(inner, loop));
-            blockCodeElement.setContent(content);
-            blockCodeElement.setBeginIndex(beginIndex);
-            blockCodeElement.setEndIndex(endIndex + endLength + blankLength);
+            baseElement(blockCodeElement, beginIndex, endIndex + endLength + blankLength, content);
             blockCodeElement.setLanguage(language);
             return blockCodeElement;
 

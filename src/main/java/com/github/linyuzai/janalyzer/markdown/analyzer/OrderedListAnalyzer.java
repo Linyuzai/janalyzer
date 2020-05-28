@@ -29,11 +29,11 @@ public class OrderedListAnalyzer extends MarkdownAnalyzer {
         String source = context.getSource();
         boolean loop = context.isLoop();
         String s = source;
-        int nextEndIndex = getNextItemEndIndex(s);
+        int nextEndIndex = getNextOrderedItemEndIndex(s);
         int endIndex = nextEndIndex;
         while (nextEndIndex != -1) {
             s = s.substring(nextEndIndex);
-            nextEndIndex = getNextItemEndIndex(s);
+            nextEndIndex = getNextOrderedItemEndIndex(s);
             if (nextEndIndex != -1) {
                 endIndex += nextEndIndex;
             }
@@ -44,13 +44,11 @@ public class OrderedListAnalyzer extends MarkdownAnalyzer {
         int beginIndex = 0;
         String content = source.substring(beginIndex, endIndex);
         OrderedListElement orderedListElement = (OrderedListElement) super.analyze(newContext(content, loop));
-        orderedListElement.setContent(content);
-        orderedListElement.setBeginIndex(beginIndex);
-        orderedListElement.setEndIndex(endIndex);
+        baseElement(orderedListElement, beginIndex, endIndex, content);
         return orderedListElement;
     }
 
-    private int getNextItemEndIndex(String source) {
+    private int getNextOrderedItemEndIndex(String source) {
         String s = trimStart(source, ' ');
         int blankLength = source.length() - s.length();
         int orderedListIndex = s.indexOf(". ");

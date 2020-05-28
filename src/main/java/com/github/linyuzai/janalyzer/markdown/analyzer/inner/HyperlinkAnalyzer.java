@@ -48,9 +48,7 @@ public class HyperlinkAnalyzer extends InnerPartAnalyzer {
                     String inner = source.substring(linkFirstIndex + linkFirst.length(), linkSecondIndex);
                     String url = source.substring(linkSecondIndex + linkSecond.length(), linkThirdIndex);
                     HyperlinkElement hyperlinkElement = (HyperlinkElement) super.analyze(newContext(inner, loop));
-                    hyperlinkElement.setContent(content);
-                    hyperlinkElement.setBeginIndex(beginIndex);
-                    hyperlinkElement.setEndIndex(endIndex);
+                    baseElement(hyperlinkElement, beginIndex, endIndex, content);
                     hyperlinkElement.setUrl(url);
                     return hyperlinkElement;
                 }

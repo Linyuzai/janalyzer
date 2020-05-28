@@ -43,9 +43,7 @@ public class InlineCodeAnalyzer extends InnerPartAnalyzer {
                 String content = source.substring(beginIndex, endIndex);
                 String inner = content.substring(mask.length(), content.length() - mask.length());
                 InlineCodeElement inlineCodeElement = (InlineCodeElement) super.analyze(newContext(inner, loop));
-                inlineCodeElement.setContent(content);
-                inlineCodeElement.setBeginIndex(beginIndex);
-                inlineCodeElement.setEndIndex(endIndex);
+                baseElement(inlineCodeElement, beginIndex, endIndex, content);
                 return inlineCodeElement;
             }
         }

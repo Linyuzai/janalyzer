@@ -43,9 +43,7 @@ public class ItalicBoldAnalyzer extends InnerPartAnalyzer {
                 String content = source.substring(beginIndex, endIndex);
                 String inner = content.substring(mask.length(), content.length() - mask.length());
                 ItalicBoldElement italicBoldElement = (ItalicBoldElement) super.analyze(newContext(inner, loop));
-                italicBoldElement.setContent(content);
-                italicBoldElement.setBeginIndex(beginIndex);
-                italicBoldElement.setEndIndex(endIndex);
+                baseElement(italicBoldElement, beginIndex, endIndex, content);
                 return italicBoldElement;
             }
         }

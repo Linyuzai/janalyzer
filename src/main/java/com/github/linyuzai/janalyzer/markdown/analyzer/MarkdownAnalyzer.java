@@ -70,4 +70,10 @@ public class MarkdownAnalyzer extends StringTemplateAnalyzer<MarkdownContext, Ma
     public MarkdownContext newContext(String source, boolean loop) {
         return new MarkdownContext(source, loop, this);
     }
+
+    public void baseElement(MarkdownElement element, int beginIndex, int endIndex, String content) {
+        element.setBeginIndex(beginIndex);
+        element.setEndIndex(endIndex);
+        element.setContent(content);
+    }
 }

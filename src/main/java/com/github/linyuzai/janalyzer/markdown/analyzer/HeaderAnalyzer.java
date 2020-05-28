@@ -50,9 +50,7 @@ public class HeaderAnalyzer extends MarkdownAnalyzer {
             String content = s.substring(0, endIndex);
             String inner = content.substring(headerLevel);
             HeaderElement headerElement = (HeaderElement) super.analyze(newContext(inner, loop));
-            headerElement.setContent(content);
-            headerElement.setBeginIndex(beginIndex);
-            headerElement.setEndIndex(endIndex + blankLength);
+            baseElement(headerElement, beginIndex, endIndex + blankLength, content);
             headerElement.setHeaderLevel(headerLevel);
             return headerElement;
         } else {

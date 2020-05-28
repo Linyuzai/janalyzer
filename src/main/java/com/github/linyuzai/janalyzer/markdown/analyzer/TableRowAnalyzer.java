@@ -33,9 +33,7 @@ public class TableRowAnalyzer extends MarkdownAnalyzer {
         int endIndex = getEndIndex(s, "\n");
         String content = source.substring(beginIndex, endIndex);
         TableRowElement tableRowElement = (TableRowElement) super.analyze(newContext(content, loop));
-        tableRowElement.setContent(content);
-        tableRowElement.setBeginIndex(beginIndex);
-        tableRowElement.setEndIndex(endIndex);
+        baseElement(tableRowElement, beginIndex, endIndex, content);
         tableRowElement.setFormat(trimBoth(content, '|', '-', ':', ' ', '\n').isEmpty());
         return tableRowElement;
     }

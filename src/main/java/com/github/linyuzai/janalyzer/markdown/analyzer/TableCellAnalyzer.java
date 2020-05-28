@@ -43,9 +43,7 @@ public class TableCellAnalyzer extends MarkdownAnalyzer {
             content = trimBoth(s.substring(beginIndex, endIndex), '|');
         }
         TableCellElement tableCellElement = (TableCellElement) super.analyze(newContext(content, loop));
-        tableCellElement.setContent(content);
-        tableCellElement.setBeginIndex(beginIndex);
-        tableCellElement.setEndIndex(endIndex);
+        baseElement(tableCellElement, beginIndex, endIndex, content);
         return tableCellElement;
     }
 

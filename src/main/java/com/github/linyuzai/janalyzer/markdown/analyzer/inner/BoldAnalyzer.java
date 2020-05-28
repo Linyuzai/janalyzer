@@ -43,9 +43,8 @@ public class BoldAnalyzer extends InnerPartAnalyzer {
                 String content = source.substring(beginIndex, endIndex);
                 String inner = content.substring(mask.length(), content.length() - mask.length());
                 BoldElement boldElement = (BoldElement) super.analyze(newContext(inner, loop));
-                boldElement.setContent(content);
-                boldElement.setBeginIndex(beginIndex);
-                boldElement.setEndIndex(endIndex);
+                baseElement(boldElement, beginIndex, endIndex, content);
+
                 return boldElement;
             }
         }

@@ -43,9 +43,7 @@ public class OrderedItemAnalyzer extends MarkdownAnalyzer {
             String content = s.substring(beginIndex, endIndex);
             String inner = content.substring(orderedListIndex + 2);
             OrderedItemElement orderedItemElement = (OrderedItemElement) super.analyze(newContext(inner, loop));
-            orderedItemElement.setContent(content);
-            orderedItemElement.setBeginIndex(beginIndex);
-            orderedItemElement.setEndIndex(endIndex + blankLength);
+            baseElement(orderedItemElement, beginIndex, endIndex + blankLength, content);
             orderedItemElement.setListLevel(blankLength);
             orderedItemElement.setSerialNumber(numStr);
             return orderedItemElement;

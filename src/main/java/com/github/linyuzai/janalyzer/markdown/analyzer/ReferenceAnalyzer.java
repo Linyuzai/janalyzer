@@ -51,9 +51,7 @@ public class ReferenceAnalyzer extends MarkdownAnalyzer {
             String content = s.substring(beginIndex, endIndex);
             String inner = trimStart(content, '>');
             ReferenceElement referenceElement = (ReferenceElement) super.analyze(newContext(inner, loop));
-            referenceElement.setContent(content);
-            referenceElement.setBeginIndex(beginIndex);
-            referenceElement.setEndIndex(endIndex + blankLength);
+            baseElement(referenceElement, beginIndex, endIndex + blankLength, content);
             referenceElement.setReferenceLevel(content.length() - inner.length());
             return referenceElement;
         }

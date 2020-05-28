@@ -36,9 +36,7 @@ public class UnorderedItemAnalyzer extends MarkdownAnalyzer {
             String content = s.substring(beginIndex, endIndex);
             String inner = content.substring(2);
             UnorderedItemElement unorderedItemElement = (UnorderedItemElement) super.analyze(newContext(inner, loop));
-            unorderedItemElement.setContent(content);
-            unorderedItemElement.setBeginIndex(beginIndex);
-            unorderedItemElement.setEndIndex(endIndex + blankLength);
+            baseElement(unorderedItemElement, beginIndex, endIndex + blankLength, content);
             unorderedItemElement.setListLevel(blankLength);
             return unorderedItemElement;
         }
