@@ -68,7 +68,7 @@ public class HtmlRenderer {
     }
 
     private String _charset() {
-        return "<meta charset=\"" + charset + "\">\n";
+        return "<meta charset=\"" + charset + "\"></meta>\n";
     }
 
     private String _title() {

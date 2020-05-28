@@ -1,30 +1,35 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.inner.*;
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.CombinationElement;
 
 public class CombinationAnalyzer extends MarkdownAnalyzer {
 
-    private static final CombinationAnalyzer instance = new CombinationAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<CombinationAnalyzer> {
 
-    public static CombinationAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new CombinationAnalyzer());
 
-    CombinationAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(CombinationAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(InlineCodeAnalyzer.getInstance());
-        registerAnalyzer(DeleteLineAnalyzer.getInstance());
-        registerAnalyzer(ItalicBoldAnalyzer.getInstance());
-        registerAnalyzer(BoldAnalyzer.getInstance());
-        registerAnalyzer(ItalicAnalyzer.getInstance());
-        registerAnalyzer(PicturePartAnalyzer.getInstance());
-        registerAnalyzer(HyperlinkAnalyzer.getInstance());
-        registerAnalyzer(TextAnalyzer.getInstance());
+        registerAnalyzer(InlineCodeAnalyzer.Proxy.getInstance());
+        registerAnalyzer(DeleteLineAnalyzer.Proxy.getInstance());
+        registerAnalyzer(ItalicBoldAnalyzer.Proxy.getInstance());
+        registerAnalyzer(BoldAnalyzer.Proxy.getInstance());
+        registerAnalyzer(ItalicAnalyzer.Proxy.getInstance());
+        registerAnalyzer(PicturePartAnalyzer.Proxy.getInstance());
+        registerAnalyzer(HyperlinkAnalyzer.Proxy.getInstance());
+        registerAnalyzer(TextAnalyzer.Proxy.getInstance());
     }
 
     @Override

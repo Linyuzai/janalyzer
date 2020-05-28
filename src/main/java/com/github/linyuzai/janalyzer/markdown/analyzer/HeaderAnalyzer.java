@@ -1,23 +1,27 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.HeaderElement;
 
 public class HeaderAnalyzer extends MarkdownAnalyzer {
 
-    private static final HeaderAnalyzer instance = new HeaderAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<DividerAnalyzer> {
 
-    public static HeaderAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new DividerAnalyzer());
 
-    HeaderAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
 
+        public Proxy(DividerAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
     }
 
     @Override

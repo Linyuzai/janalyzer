@@ -1,23 +1,28 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.CombinationAnalyzer;
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.ItalicElement;
 
 public class ItalicAnalyzer extends InnerPartAnalyzer {
 
-    private static final ItalicAnalyzer instance = new ItalicAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<ItalicAnalyzer> {
 
-    public static ItalicAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new ItalicAnalyzer());
 
-    ItalicAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(ItalicAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
     }
 
     @Override

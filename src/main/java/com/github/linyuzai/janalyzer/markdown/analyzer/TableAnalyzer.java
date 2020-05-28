@@ -1,22 +1,27 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.TableElement;
 
 public class TableAnalyzer extends MarkdownAnalyzer {
 
-    private static final TableAnalyzer instance = new TableAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<TableAnalyzer> {
 
-    public static TableAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new TableAnalyzer());
 
-    TableAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(TableAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(TableRowAnalyzer.getInstance());
+        registerAnalyzer(TableRowAnalyzer.Proxy.getInstance());
     }
 
     @Override

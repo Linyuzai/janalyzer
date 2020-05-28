@@ -1,23 +1,38 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.CombinationAnalyzer;
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.PictureElement;
 
 public class PicturePartAnalyzer extends InnerPartAnalyzer {
 
-    private static final PicturePartAnalyzer instance = new PicturePartAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<PicturePartAnalyzer> {
 
-    public static PicturePartAnalyzer getInstance() {
-        return instance;
+        private static final Proxy instance = new Proxy(new PicturePartAnalyzer());
+
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(PicturePartAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
-    PicturePartAnalyzer() {
+    private boolean analyseName = false;
+
+    public boolean isAnalyseName() {
+        return analyseName;
+    }
+
+    public void setAnalyseName(boolean analyseName) {
+        this.analyseName = analyseName;
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
     }
 
     @Override
@@ -42,7 +57,8 @@ public class PicturePartAnalyzer extends InnerPartAnalyzer {
                     String content = source.substring(beginIndex, endIndex);
                     String inner = source.substring(picFirstIndex + picFirst.length(), picSecondIndex);
                     String urlAndTitle = source.substring(picSecondIndex + picSecond.length(), picThirdIndex);
-                    PictureElement pictureElement = (PictureElement) super.analyze(newContext(inner, loop));
+                    PictureElement pictureElement = analyseName ?
+                            (PictureElement) super.analyze(newContext(inner, loop)) : newElement();
                     pictureElement.setContent(content);
                     pictureElement.setBeginIndex(beginIndex);
                     pictureElement.setEndIndex(endIndex);

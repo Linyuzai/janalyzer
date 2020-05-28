@@ -64,7 +64,7 @@ public class MarkdownReader {
                 .replaceAll("\r\n", "\n")
                 .replaceAll("\r", "\n");
         if (analyzer == null) {
-            analyzer = MarkdownAnalyzer.getInstance();
+            analyzer = MarkdownAnalyzer.Proxy.getInstance();
         }
         analyzer.registerAnalyzers();
         return new MarkdownDocument(analyzer.analyze(analyzer.newContext(content, true)));

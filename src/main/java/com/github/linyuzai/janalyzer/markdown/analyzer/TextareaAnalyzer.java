@@ -1,17 +1,22 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.TextareaElement;
 
 public class TextareaAnalyzer extends MarkdownAnalyzer {
 
-    private static final TextareaAnalyzer instance = new TextareaAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<TextareaAnalyzer> {
 
-    public static TextareaAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new TextareaAnalyzer());
 
-    TextareaAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(TextareaAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override

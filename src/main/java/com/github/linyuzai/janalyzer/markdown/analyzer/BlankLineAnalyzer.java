@@ -1,17 +1,22 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
+import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.BlankLineElement;
 
 public class BlankLineAnalyzer extends MarkdownAnalyzer {
 
-    private static final BlankLineAnalyzer instance = new BlankLineAnalyzer();
+    public static class Proxy extends AbstractAnalyzerProxy<BlankLineAnalyzer> {
 
-    public static BlankLineAnalyzer getInstance() {
-        return instance;
-    }
+        private static final Proxy instance = new Proxy(new BlankLineAnalyzer());
 
-    BlankLineAnalyzer() {
+        public static Proxy getInstance() {
+            return instance;
+        }
+
+        public Proxy(BlankLineAnalyzer analyzer) {
+            super(analyzer);
+        }
     }
 
     @Override
