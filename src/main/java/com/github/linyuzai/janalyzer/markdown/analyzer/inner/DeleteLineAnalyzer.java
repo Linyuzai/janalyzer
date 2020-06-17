@@ -9,14 +9,18 @@ public class DeleteLineAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<DeleteLineAnalyzer> {
 
-        private static final Holder instance = new Holder(new DeleteLineAnalyzer());
+        private static final DeleteLineAnalyzer.Holder instance = new DeleteLineAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static DeleteLineAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(DeleteLineAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public DeleteLineAnalyzer newAnalyzer() {
+            return new DeleteLineAnalyzer();
         }
     }
 

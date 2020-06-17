@@ -6,16 +6,20 @@ import com.github.linyuzai.janalyzer.markdown.element.HeaderElement;
 
 public class HeaderAnalyzer extends MarkdownAnalyzer {
 
-    public static class Holder extends AbstractAnalyzerHolder<DividerAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<HeaderAnalyzer> {
 
-        private static final Holder instance = new Holder(new DividerAnalyzer());
+        private static final HeaderAnalyzer.Holder instance = new HeaderAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static HeaderAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(DividerAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public HeaderAnalyzer newAnalyzer() {
+            return new HeaderAnalyzer();
         }
     }
 

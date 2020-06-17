@@ -9,14 +9,18 @@ public class HyperlinkAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<HyperlinkAnalyzer> {
 
-        private static final Holder instance = new Holder(new HyperlinkAnalyzer());
+        private static final HyperlinkAnalyzer.Holder instance = new HyperlinkAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static HyperlinkAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(HyperlinkAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public HyperlinkAnalyzer newAnalyzer() {
+            return new HyperlinkAnalyzer();
         }
     }
 

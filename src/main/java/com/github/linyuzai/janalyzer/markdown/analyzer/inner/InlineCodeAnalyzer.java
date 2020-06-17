@@ -9,14 +9,18 @@ public class InlineCodeAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<InlineCodeAnalyzer> {
 
-        private static final Holder instance = new Holder(new InlineCodeAnalyzer());
+        private static final InlineCodeAnalyzer.Holder instance = new InlineCodeAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static InlineCodeAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(InlineCodeAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public InlineCodeAnalyzer newAnalyzer() {
+            return new InlineCodeAnalyzer();
         }
     }
 

@@ -9,14 +9,18 @@ public class PicturePartAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<PicturePartAnalyzer> {
 
-        private static final Holder instance = new Holder(new PicturePartAnalyzer());
+        private static final PicturePartAnalyzer.Holder instance = new PicturePartAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static PicturePartAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(PicturePartAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public PicturePartAnalyzer newAnalyzer() {
+            return new PicturePartAnalyzer();
         }
     }
 

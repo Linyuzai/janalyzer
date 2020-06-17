@@ -8,14 +8,18 @@ public class UnorderedListAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<UnorderedListAnalyzer> {
 
-        private static final Holder instance = new Holder(new UnorderedListAnalyzer());
+        private static final UnorderedListAnalyzer.Holder instance = new UnorderedListAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static UnorderedListAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(UnorderedListAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public UnorderedListAnalyzer newAnalyzer() {
+            return new UnorderedListAnalyzer();
         }
     }
 

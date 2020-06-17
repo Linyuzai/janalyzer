@@ -8,14 +8,18 @@ public class TextareaAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<TextareaAnalyzer> {
 
-        private static final Holder instance = new Holder(new TextareaAnalyzer());
+        private static final TextareaAnalyzer.Holder instance = new TextareaAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static TextareaAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(TextareaAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public TextareaAnalyzer newAnalyzer() {
+            return new TextareaAnalyzer();
         }
     }
 

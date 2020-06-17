@@ -6,13 +6,9 @@ import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 
 import java.util.Collection;
 
-public class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends MarkdownAnalyzer implements AnalyzerHolder<A> {
+public abstract class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends MarkdownAnalyzer implements AnalyzerHolder<A> {
 
     private A analyzer;
-
-    public AbstractAnalyzerHolder(A analyzer) {
-        this.analyzer = analyzer;
-    }
 
     @Override
     public A getAnalyzer() {
@@ -26,16 +22,21 @@ public class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends Markdown
 
     @Override
     public void registerAnalyzers() {
+        newAnalyzerIfNecessary();
         this.analyzer.registerAnalyzers();
     }
 
+    public abstract A newAnalyzer();
+
     @Override
     public void registerSelfAnalyzers() {
+        newAnalyzerIfNecessary();
         this.analyzer.registerSelfAnalyzers();
     }
 
     @Override
     public void registerChildrenAnalyzers() {
+        newAnalyzerIfNecessary();
         this.analyzer.registerChildrenAnalyzers();
     }
 
@@ -71,21 +72,25 @@ public class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends Markdown
 
     @Override
     public void sort(Collection<MarkdownAnalyzer> collection) {
+        newAnalyzerIfNecessary();
         this.analyzer.sort(collection);
     }
 
     @Override
     public void registerAnalyzer(MarkdownAnalyzer analyzer) {
+        newAnalyzerIfNecessary();
         this.analyzer.registerAnalyzer(analyzer);
     }
 
     @Override
     public void unregisterAnalyzer(MarkdownAnalyzer analyzer) {
+        newAnalyzerIfNecessary();
         this.analyzer.unregisterAnalyzer(analyzer);
     }
 
     @Override
     public void clearAnalyzers() {
+        newAnalyzerIfNecessary();
         this.analyzer.clearAnalyzers();
     }
 
@@ -126,21 +131,13 @@ public class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends Markdown
 
     @Override
     public int order() {
+        newAnalyzerIfNecessary();
         return this.analyzer.order();
     }
 
-    @Override
-    public int hashCode() {
-        return this.analyzer.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this.analyzer.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return this.analyzer.toString();
+    private void newAnalyzerIfNecessary() {
+        if (analyzer == null) {
+            analyzer = newAnalyzer();
+        }
     }
 }

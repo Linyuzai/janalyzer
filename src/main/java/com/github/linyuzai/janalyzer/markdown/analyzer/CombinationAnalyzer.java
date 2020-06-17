@@ -9,14 +9,18 @@ public class CombinationAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<CombinationAnalyzer> {
 
-        private static final Holder instance = new Holder(new CombinationAnalyzer());
+        private static final CombinationAnalyzer.Holder instance = new CombinationAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static CombinationAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(CombinationAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public CombinationAnalyzer newAnalyzer() {
+            return new CombinationAnalyzer();
         }
     }
 

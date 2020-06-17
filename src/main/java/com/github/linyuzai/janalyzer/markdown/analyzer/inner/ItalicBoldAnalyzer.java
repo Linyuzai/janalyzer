@@ -9,14 +9,18 @@ public class ItalicBoldAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<ItalicBoldAnalyzer> {
 
-        private static final Holder instance = new Holder(new ItalicBoldAnalyzer());
+        private static final ItalicBoldAnalyzer.Holder instance = new ItalicBoldAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static ItalicBoldAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(ItalicBoldAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public ItalicBoldAnalyzer newAnalyzer() {
+            return new ItalicBoldAnalyzer();
         }
     }
 

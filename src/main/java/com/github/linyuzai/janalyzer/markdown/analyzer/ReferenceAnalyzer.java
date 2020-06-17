@@ -11,14 +11,18 @@ public class ReferenceAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<ReferenceAnalyzer> {
 
-        private static final Holder instance = new Holder(new ReferenceAnalyzer());
+        private static final ReferenceAnalyzer.Holder instance = new ReferenceAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static ReferenceAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(ReferenceAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public ReferenceAnalyzer newAnalyzer() {
+            return new ReferenceAnalyzer();
         }
     }
 

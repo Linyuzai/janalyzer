@@ -8,14 +8,18 @@ public class BlockCodeAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<BlockCodeAnalyzer> {
 
-        private static final Holder instance = new Holder(new BlockCodeAnalyzer());
+        private static final BlockCodeAnalyzer.Holder instance = new BlockCodeAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static BlockCodeAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(BlockCodeAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public BlockCodeAnalyzer newAnalyzer() {
+            return new BlockCodeAnalyzer();
         }
     }
 

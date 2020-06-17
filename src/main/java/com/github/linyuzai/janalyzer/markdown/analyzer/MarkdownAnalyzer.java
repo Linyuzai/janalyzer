@@ -11,14 +11,18 @@ public class MarkdownAnalyzer extends StringTemplateAnalyzer<MarkdownContext, Ma
 
     public static class Holder extends AbstractAnalyzerHolder<MarkdownAnalyzer> {
 
-        private static final Holder instance = new Holder(new MarkdownAnalyzer());
+        private static final MarkdownAnalyzer.Holder instance = new MarkdownAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        private Holder() {
+        }
+
+        public static MarkdownAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(MarkdownAnalyzer analyzer) {
-            super(analyzer);
+        @Override
+        public MarkdownAnalyzer newAnalyzer() {
+            return new MarkdownAnalyzer();
         }
     }
 

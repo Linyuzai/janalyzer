@@ -8,14 +8,18 @@ public class DividerAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<DividerAnalyzer> {
 
-        private static final Holder instance = new Holder(new DividerAnalyzer());
+        private static final DividerAnalyzer.Holder instance = new DividerAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static DividerAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(DividerAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public DividerAnalyzer newAnalyzer() {
+            return new DividerAnalyzer();
         }
     }
 

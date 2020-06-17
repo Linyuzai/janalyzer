@@ -9,14 +9,18 @@ public class BoldAnalyzer extends InnerPartAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<BoldAnalyzer> {
 
-        private static final Holder instance = new Holder(new BoldAnalyzer());
+        private static final BoldAnalyzer.Holder instance = new BoldAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        private Holder() {
+        }
+
+        public static BoldAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(BoldAnalyzer analyzer) {
-            super(analyzer);
+        @Override
+        public BoldAnalyzer newAnalyzer() {
+            return new BoldAnalyzer();
         }
     }
 

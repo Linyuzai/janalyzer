@@ -8,14 +8,18 @@ public class TableRowAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<TableRowAnalyzer> {
 
-        private static final Holder instance = new Holder(new TableRowAnalyzer());
+        private static final TableRowAnalyzer.Holder instance = new TableRowAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static TableRowAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(TableRowAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public TableRowAnalyzer newAnalyzer() {
+            return new TableRowAnalyzer();
         }
     }
 

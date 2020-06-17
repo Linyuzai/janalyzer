@@ -8,14 +8,18 @@ public class BlankLineAnalyzer extends MarkdownAnalyzer {
 
     public static class Holder extends AbstractAnalyzerHolder<BlankLineAnalyzer> {
 
-        private static final Holder instance = new Holder(new BlankLineAnalyzer());
+        private static final BlankLineAnalyzer.Holder instance = new BlankLineAnalyzer.Holder();
 
-        public static Holder getInstance() {
+        public static BlankLineAnalyzer.Holder getInstance() {
             return instance;
         }
 
-        public Holder(BlankLineAnalyzer analyzer) {
-            super(analyzer);
+        private Holder() {
+        }
+
+        @Override
+        public BlankLineAnalyzer newAnalyzer() {
+            return new BlankLineAnalyzer();
         }
     }
 
