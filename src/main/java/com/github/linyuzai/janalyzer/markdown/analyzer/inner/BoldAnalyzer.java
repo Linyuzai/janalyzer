@@ -1,28 +1,28 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.CombinationAnalyzer;
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.BoldElement;
 
 public class BoldAnalyzer extends InnerPartAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<BoldAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<BoldAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new BoldAnalyzer());
+        private static final Holder instance = new Holder(new BoldAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(BoldAnalyzer analyzer) {
+        public Holder(BoldAnalyzer analyzer) {
             super(analyzer);
         }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Holder.getInstance());
     }
 
     @Override

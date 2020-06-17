@@ -1,6 +1,6 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 import com.github.linyuzai.janalyzer.markdown.element.ReferenceElement;
@@ -9,15 +9,15 @@ import java.util.Collection;
 
 public class ReferenceAnalyzer extends MarkdownAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<ReferenceAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<ReferenceAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new ReferenceAnalyzer());
+        private static final Holder instance = new Holder(new ReferenceAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(ReferenceAnalyzer analyzer) {
+        public Holder(ReferenceAnalyzer analyzer) {
             super(analyzer);
         }
     }

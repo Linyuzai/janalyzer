@@ -1,12 +1,13 @@
 package com.github.linyuzai.janalyzer.markdown.word;
 
 import com.github.linyuzai.janalyzer.markdown.element.*;
+import com.github.linyuzai.janalyzer.markdown.html.HtmlRenderer;
 import org.apache.poi.poifs.filesystem.DirectoryEntry;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import java.io.*;
 
-public class DocxWriter {
+public class DocWriter {
 
     private MarkdownElement markdownElement;
     private String html;
@@ -16,39 +17,38 @@ public class DocxWriter {
 
     private String charset = "utf-8";
 
-    public DocxWriter(MarkdownElement markdownElement) {
+    public DocWriter(MarkdownElement markdownElement) {
         this.markdownElement = markdownElement;
     }
 
-    public DocxWriter(String html) {
+    public DocWriter(String html) {
         this.html = html;
         isHtml = true;
     }
 
-    public DocxWriter name(String name) {
+    public DocWriter name(String name) {
         this.name = name;
         return this;
     }
 
-    public DocxWriter charset(String charset) {
+    public DocWriter charset(String charset) {
         this.charset = charset;
         return this;
     }
 
-    public DocxWriter write(String path) throws IOException {
+    public DocWriter write(String path) throws IOException {
         return write(new File(path));
     }
 
-    public DocxWriter write(File file) throws IOException {
+    public DocWriter write(File file) throws IOException {
         return write(new FileOutputStream(file));
     }
 
-    public DocxWriter write(OutputStream os) throws IOException {
-        if (isHtml) {
-            writeHtml(os);
-        } else {
-            throw new RuntimeException("Not finished");
+    public DocWriter write(OutputStream os) throws IOException {
+        if (!isHtml) {
+            html = new HtmlRenderer(markdownElement).render().getContent();
         }
+        writeHtml(os);
         return this;
     }
 

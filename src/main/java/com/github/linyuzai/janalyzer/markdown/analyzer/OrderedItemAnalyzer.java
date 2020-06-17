@@ -1,27 +1,27 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.OrderedItemElement;
 
 public class OrderedItemAnalyzer extends MarkdownAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<OrderedItemAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<OrderedItemAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new OrderedItemAnalyzer());
+        private static final Holder instance = new Holder(new OrderedItemAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(OrderedItemAnalyzer analyzer) {
+        public Holder(OrderedItemAnalyzer analyzer) {
             super(analyzer);
         }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Holder.getInstance());
     }
 
     @Override

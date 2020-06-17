@@ -1,28 +1,28 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.TextAnalyzer;
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.InlineCodeElement;
 
 public class InlineCodeAnalyzer extends InnerPartAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<InlineCodeAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<InlineCodeAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new InlineCodeAnalyzer());
+        private static final Holder instance = new Holder(new InlineCodeAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(InlineCodeAnalyzer analyzer) {
+        public Holder(InlineCodeAnalyzer analyzer) {
             super(analyzer);
         }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(TextAnalyzer.Proxy.getInstance());
+        registerAnalyzer(TextAnalyzer.Holder.getInstance());
     }
 
     @Override

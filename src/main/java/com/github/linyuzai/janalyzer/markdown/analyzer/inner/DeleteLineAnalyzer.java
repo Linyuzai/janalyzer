@@ -1,28 +1,28 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.CombinationAnalyzer;
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.DeleteLineElement;
 
 public class DeleteLineAnalyzer extends InnerPartAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<DeleteLineAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<DeleteLineAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new DeleteLineAnalyzer());
+        private static final Holder instance = new Holder(new DeleteLineAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(DeleteLineAnalyzer analyzer) {
+        public Holder(DeleteLineAnalyzer analyzer) {
             super(analyzer);
         }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Holder.getInstance());
     }
 
     @Override

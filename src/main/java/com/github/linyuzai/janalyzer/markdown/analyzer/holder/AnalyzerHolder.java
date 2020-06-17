@@ -1,8 +1,8 @@
-package com.github.linyuzai.janalyzer.markdown.analyzer.proxy;
+package com.github.linyuzai.janalyzer.markdown.analyzer.holder;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.MarkdownAnalyzer;
 
-public interface AnalyzerProxy<A extends MarkdownAnalyzer> {
+public interface AnalyzerHolder<A extends MarkdownAnalyzer> {
 
     A getAnalyzer();
 

@@ -1,4 +1,4 @@
-package com.github.linyuzai.janalyzer.markdown.analyzer.proxy;
+package com.github.linyuzai.janalyzer.markdown.analyzer.holder;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.MarkdownAnalyzer;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
@@ -6,11 +6,11 @@ import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 
 import java.util.Collection;
 
-public class AbstractAnalyzerProxy<A extends MarkdownAnalyzer> extends MarkdownAnalyzer implements AnalyzerProxy<A> {
+public class AbstractAnalyzerHolder<A extends MarkdownAnalyzer> extends MarkdownAnalyzer implements AnalyzerHolder<A> {
 
     private A analyzer;
 
-    public AbstractAnalyzerProxy(A analyzer) {
+    public AbstractAnalyzerHolder(A analyzer) {
         this.analyzer = analyzer;
     }
 

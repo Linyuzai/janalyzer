@@ -6,11 +6,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 public class MarkdownReader {
 
     private String content;
     private File file;
+    private String charset;
     private int bufferSize;
     private MarkdownAnalyzer analyzer;
 
@@ -28,6 +30,16 @@ public class MarkdownReader {
 
     public MarkdownReader file(String path) {
         return file(new File(path));
+    }
+
+    public MarkdownReader charset(String charset) {
+        this.charset = charset;
+        return this;
+    }
+
+    public MarkdownReader charset(Charset charset) {
+        this.charset = charset.name();
+        return this;
     }
 
     public MarkdownReader bufferSize(int bufferSize) {
@@ -55,7 +67,7 @@ public class MarkdownReader {
                 while ((length = fis.read(buffer)) != -1) {
                     bos.write(buffer, 0, length);
                 }
-                content = bos.toString();
+                content = charset == null ? bos.toString() : bos.toString(charset);
                 bos.close();
                 fis.close();
             }
@@ -64,7 +76,7 @@ public class MarkdownReader {
                 .replaceAll("\r\n", "\n")
                 .replaceAll("\r", "\n");
         if (analyzer == null) {
-            analyzer = MarkdownAnalyzer.Proxy.getInstance();
+            analyzer = MarkdownAnalyzer.Holder.getInstance();
         }
         analyzer.registerAnalyzers();
         return new MarkdownDocument(analyzer.analyze(analyzer.newContext(content, true)));

@@ -1,21 +1,21 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer.inner;
 
 import com.github.linyuzai.janalyzer.markdown.analyzer.CombinationAnalyzer;
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.PictureElement;
 
 public class PicturePartAnalyzer extends InnerPartAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<PicturePartAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<PicturePartAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new PicturePartAnalyzer());
+        private static final Holder instance = new Holder(new PicturePartAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(PicturePartAnalyzer analyzer) {
+        public Holder(PicturePartAnalyzer analyzer) {
             super(analyzer);
         }
     }
@@ -32,7 +32,7 @@ public class PicturePartAnalyzer extends InnerPartAnalyzer {
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Holder.getInstance());
     }
 
     @Override

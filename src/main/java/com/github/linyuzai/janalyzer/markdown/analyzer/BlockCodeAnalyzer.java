@@ -1,27 +1,27 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.BlockCodeElement;
 
 public class BlockCodeAnalyzer extends MarkdownAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<BlockCodeAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<BlockCodeAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new BlockCodeAnalyzer());
+        private static final Holder instance = new Holder(new BlockCodeAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(BlockCodeAnalyzer analyzer) {
+        public Holder(BlockCodeAnalyzer analyzer) {
             super(analyzer);
         }
     }
 
     @Override
     public void registerSelfAnalyzers() {
-        registerAnalyzer(TextareaAnalyzer.Proxy.getInstance());
+        registerAnalyzer(TextareaAnalyzer.Holder.getInstance());
     }
 
     @Override

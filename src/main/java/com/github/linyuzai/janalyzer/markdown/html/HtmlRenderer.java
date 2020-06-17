@@ -1,7 +1,7 @@
 package com.github.linyuzai.janalyzer.markdown.html;
 
 import com.github.linyuzai.janalyzer.markdown.element.*;
-import com.github.linyuzai.janalyzer.markdown.word.DocxWriter;
+import com.github.linyuzai.janalyzer.markdown.word.DocWriter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -43,8 +43,8 @@ public class HtmlRenderer {
         return this;
     }
 
-    public DocxWriter docx() {
-        return new DocxWriter(content).charset(charset);
+    public DocWriter doc() {
+        return new DocWriter(content).charset(charset);
     }
 
     public HtmlRenderer render() {

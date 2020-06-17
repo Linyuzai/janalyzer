@@ -2,7 +2,7 @@ package com.github.linyuzai.janalyzer.markdown;
 
 import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 import com.github.linyuzai.janalyzer.markdown.html.HtmlRenderer;
-import com.github.linyuzai.janalyzer.markdown.word.DocxWriter;
+import com.github.linyuzai.janalyzer.markdown.word.DocWriter;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class MarkdownDocument {
         return renderer;
     }
 
-    public DocxWriter docx() throws IOException {
-        return new DocxWriter(markdownElement);
+    public DocWriter doc() throws IOException {
+        return new DocWriter(markdownElement);
     }
 }

@@ -1,20 +1,20 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.TextElement;
 
 public class TextAnalyzer extends MarkdownAnalyzer {
 
-    public static class Proxy extends AbstractAnalyzerProxy<TextAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<TextAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new TextAnalyzer());
+        private static final Holder instance = new Holder(new TextAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(TextAnalyzer analyzer) {
+        public Holder(TextAnalyzer analyzer) {
             super(analyzer);
         }
     }

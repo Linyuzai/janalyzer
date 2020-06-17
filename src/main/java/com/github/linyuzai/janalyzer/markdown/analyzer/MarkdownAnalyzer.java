@@ -1,7 +1,7 @@
 package com.github.linyuzai.janalyzer.markdown.analyzer;
 
 import com.github.linyuzai.janalyzer.ast.StringTemplateAnalyzer;
-import com.github.linyuzai.janalyzer.markdown.analyzer.proxy.AbstractAnalyzerProxy;
+import com.github.linyuzai.janalyzer.markdown.analyzer.holder.AbstractAnalyzerHolder;
 import com.github.linyuzai.janalyzer.markdown.context.MarkdownContext;
 import com.github.linyuzai.janalyzer.markdown.element.MarkdownElement;
 
@@ -9,15 +9,15 @@ import java.util.Collection;
 
 public class MarkdownAnalyzer extends StringTemplateAnalyzer<MarkdownContext, MarkdownAnalyzer, MarkdownElement> {
 
-    public static class Proxy extends AbstractAnalyzerProxy<MarkdownAnalyzer> {
+    public static class Holder extends AbstractAnalyzerHolder<MarkdownAnalyzer> {
 
-        private static final Proxy instance = new Proxy(new MarkdownAnalyzer());
+        private static final Holder instance = new Holder(new MarkdownAnalyzer());
 
-        public static Proxy getInstance() {
+        public static Holder getInstance() {
             return instance;
         }
 
-        public Proxy(MarkdownAnalyzer analyzer) {
+        public Holder(MarkdownAnalyzer analyzer) {
             super(analyzer);
         }
     }
@@ -34,15 +34,15 @@ public class MarkdownAnalyzer extends StringTemplateAnalyzer<MarkdownContext, Ma
     }
 
     public void registerSelfAnalyzers() {
-        registerAnalyzer(BlankLineAnalyzer.Proxy.getInstance());
-        registerAnalyzer(HeaderAnalyzer.Proxy.getInstance());
-        registerAnalyzer(ReferenceAnalyzer.Proxy.getInstance());
-        registerAnalyzer(UnorderedListAnalyzer.Proxy.getInstance());
-        registerAnalyzer(OrderedListAnalyzer.Proxy.getInstance());
-        registerAnalyzer(BlockCodeAnalyzer.Proxy.getInstance());
-        registerAnalyzer(DividerAnalyzer.Proxy.getInstance());
-        registerAnalyzer(TableAnalyzer.Proxy.getInstance());
-        registerAnalyzer(CombinationAnalyzer.Proxy.getInstance());
+        registerAnalyzer(BlankLineAnalyzer.Holder.getInstance());
+        registerAnalyzer(HeaderAnalyzer.Holder.getInstance());
+        registerAnalyzer(ReferenceAnalyzer.Holder.getInstance());
+        registerAnalyzer(UnorderedListAnalyzer.Holder.getInstance());
+        registerAnalyzer(OrderedListAnalyzer.Holder.getInstance());
+        registerAnalyzer(BlockCodeAnalyzer.Holder.getInstance());
+        registerAnalyzer(DividerAnalyzer.Holder.getInstance());
+        registerAnalyzer(TableAnalyzer.Holder.getInstance());
+        registerAnalyzer(CombinationAnalyzer.Holder.getInstance());
     }
 
     public void registerChildrenAnalyzers() {
