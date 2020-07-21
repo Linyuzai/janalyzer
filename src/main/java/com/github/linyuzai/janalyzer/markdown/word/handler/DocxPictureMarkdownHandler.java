@@ -3,7 +3,7 @@ package com.github.linyuzai.janalyzer.markdown.word.handler;
 import com.github.linyuzai.janalyzer.markdown.word.DocxReader;
 import org.apache.poi.xwpf.usermodel.*;
 
-public class DocxPictureMarkdownHandler implements BodyElementHandler {
+public class DocxPictureMarkdownHandler implements ElementHandler {
 
     private boolean showFilename;
 
@@ -19,22 +19,23 @@ public class DocxPictureMarkdownHandler implements BodyElementHandler {
     }
 
     @Override
-    public boolean support(DocxReader reader, IBodyElement element) {
-        return element instanceof XWPFPictureData;
+    public boolean support(DocxReader reader, Object element) {
+        return element instanceof XWPFPicture;
     }
 
     @Override
-    public String handle(DocxReader reader, IBodyElement element) {
-        ((XWPFPictureData) element).getChecksum();
-        byte[] bytes = ((XWPFPictureData) element).getData();
-        String filename = ((XWPFPictureData) element).getFileName();
-        int type = ((XWPFPictureData) element).getPictureType();
+    public String handle(DocxReader reader, Object element) {
+        XWPFPictureData pictureData = ((XWPFPicture) element).getPictureData();
+        byte[] bytes = pictureData.getData();
+        String filename = pictureData.getFileName();
+        int type = pictureData.getPictureType();
         String url = urlProvider.getUrl(bytes, filename, getContentType(type));
         return "![" + (showFilename ? filename : "") + "](" + url + ")";
     }
 
     public String getContentType(int type) {
-        return null;
+        //TODO 添加ContentType
+        return "";
     }
 
     public UrlProvider getUrlProvider() {

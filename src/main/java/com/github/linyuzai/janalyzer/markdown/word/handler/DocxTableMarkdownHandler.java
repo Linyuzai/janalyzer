@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class DocxTableMarkdownHandler implements BodyElementHandler {
+public class DocxTableMarkdownHandler implements ElementHandler {
 
     @Override
-    public boolean support(DocxReader reader, IBodyElement element) {
+    public boolean support(DocxReader reader, Object element) {
         return element instanceof XWPFTable;
     }
 
     @Override
-    public String handle(DocxReader reader, IBodyElement element) {
+    public String handle(DocxReader reader, Object element) {
         StringBuilder builder = new StringBuilder();
         int cellCount = 0;
         int i = 0;
@@ -50,7 +50,6 @@ public class DocxTableMarkdownHandler implements BodyElementHandler {
             }
             i++;
         }
-        builder.append("\n");
         return builder.toString();
     }
 
